@@ -111,6 +111,22 @@ body {
   .main .content {
     width: 90%;
   }
+
+  .main .layout {
+    padding: 20px 0;
+  }
+
+  .ant-table-body {
+    font-size: 11px;
+  }
+
+  .ant-col .ant-form-item-label label {
+    font-size: 12px !important;
+  }
+
+  .ant-input {
+    height: 30px !important;
+  }
 }
 @media only screen and (max-width: 500px) {
   .main .content {

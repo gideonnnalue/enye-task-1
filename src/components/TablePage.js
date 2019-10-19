@@ -32,13 +32,7 @@ const columns = [
 const TablePage = ({ users }) => {
   return (
     <div>
-      <Table
-        columns={columns}
-        dataSource={users}
-        expandedRowRender={record => (
-          <p style={{ margin: 0 }}>{record.hobby}</p>
-        )}
-      />
+      <Table columns={columns} dataSource={users} />
     </div>
   );
 };

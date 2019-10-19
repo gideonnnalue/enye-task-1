@@ -16,8 +16,9 @@ class FormPage extends Component {
     e.preventDefault();
     const user = { ...this.state };
     user.key = Date.now();
-    delete user.success;
+    delete user.type;
     delete user.showMsg;
+    console.log(user);
 
     let err = false;
     Object.keys(user).forEach((key, i) => {
