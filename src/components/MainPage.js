@@ -3,17 +3,19 @@ import { Layout } from "antd";
 import { Row, Col } from "antd";
 
 import FormPage from "./FormPage";
+import TablePage from "./TablePage";
 
 const { Content } = Layout;
 
 class MainPage extends Component {
   state = {
     users: []
-  }
+  };
 
   addUser(data) {
-    const users = [ data, ...this.state.users]
-    this.setState(users);
+    const users = [...this.state.users];
+    users.push(data);
+    this.setState({ users: users });
     // console.log("users", this.state)
   }
   render() {
@@ -23,11 +25,11 @@ class MainPage extends Component {
         <Layout className="layout">
           <Content className="content">
             <Row style={{ width: "100%", height: "100%" }}>
-              <Col span={10} className="section table__form">
-                <FormPage addUser={data => this.addUser(data)}/>
+              <Col lg={10} className="section table__form">
+                <FormPage addUser={data => this.addUser(data)} />
               </Col>
-              <Col span={14} className="section table__content">
-                col-4
+              <Col lg={14} className="section table__content">
+                <TablePage users={this.state.users} />
               </Col>
             </Row>
           </Content>

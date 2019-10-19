@@ -20,9 +20,14 @@ html {
 }
 
 .main {
-  height: 100vh;
+  max-height: 100vh;
+  height: 100%;
   width: 100%;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
+}
+
+body {
+  background: linear-gradient(to right bottom, #00b4db, #0083b0);
 }
 
 .main .layout {
@@ -33,7 +38,7 @@ html {
   justify-content: center;
   align-items: center;
   color: #424242;
-  padding: 20px 0;
+  padding: 40px 0;
 }
 
 .main .content {
@@ -55,7 +60,8 @@ html {
 }
 
 .table__form {
-  display: flex !important; 
+  padding: 5rem 0;
+  display: flex !important;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -81,7 +87,11 @@ html {
 }
 
 .submit-button {
-  background: linear-gradient(90.14deg, #0083B0 0.04%, #00B4DB 99.97%) !important;
+  background: linear-gradient(
+    90.14deg,
+    #0083b0 0.04%,
+    #00b4db 99.97%
+  ) !important;
   box-shadow: 0px 0px 19px rgba(0, 180, 219, 0.65) !important;
   padding-left: 40px !important;
   outline: none !important;
@@ -90,9 +100,24 @@ html {
 }
 
 .submit-button:hover {
-  transform: scale(1.1)
+  transform: scale(1.1);
 }
 
 .submit-button i {
   padding-left: 40px !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .main .content {
+    width: 90%;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .main .content {
+    width: 97%;
+  }
+
+  .form-section {
+    width: 80%;
+  }
 }
