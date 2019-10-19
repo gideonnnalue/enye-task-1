@@ -25,10 +25,10 @@ class MainPage extends Component {
           <h1 style={{ fontWeight: "bold", color: "#FFF" }}>USER LIST</h1>
           <Content className="content">
             <Row style={{ width: "100%", height: "100%" }}>
-              <Col lg={10} className="section table__form">
+              <Col md={24} lg={10} xl={10} className="section table__form">
                 <FormPage addUser={data => this.addUser(data)} />
               </Col>
-              <Col lg={14} className="section table__content">
+              <Col md={24} lg={14} xl={14} className="section table__content">
                 <TablePage users={this.state.users} />
               </Col>
             </Row>

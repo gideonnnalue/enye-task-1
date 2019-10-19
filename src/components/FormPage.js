@@ -18,7 +18,6 @@ class FormPage extends Component {
     user.key = Date.now();
     delete user.type;
     delete user.showMsg;
-    console.log(user);
 
     let err = false;
     Object.keys(user).forEach((key, i) => {
