@@ -22,6 +22,7 @@ html {
 .main {
   height: 100vh;
   width: 100%;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .main .layout {
@@ -31,13 +32,15 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #424242;
+  padding: 20px 0;
 }
 
 .main .content {
   width: 80%;
   height: 80%;
   background-color: #fff;
-  flex: 0 0 80%;
+  /* flex: 0 0 80%; */
   border-radius: 8px;
   box-shadow: 0 2rem 6rem 0.5rem rgba(101, 90, 86, 0.2);
   overflow: hidden;
@@ -52,7 +55,44 @@ html {
 }
 
 .table__form {
-  display: flex;
+  display: flex !important; 
   justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 100%;
+  color: #424242;
+}
+
+.form-section {
+  height: 80%;
+  width: 60%;
+}
+
+.ant-form-item-label {
+  line-height: 20px !important;
+}
+
+.ant-input {
+  height: 40px !important;
+}
+
+.ant-form-item {
+  margin-bottom: 14px !important;
+}
+
+.submit-button {
+  background: linear-gradient(90.14deg, #0083B0 0.04%, #00B4DB 99.97%) !important;
+  box-shadow: 0px 0px 19px rgba(0, 180, 219, 0.65) !important;
+  padding-left: 40px !important;
+  outline: none !important;
+  border-color: transparent !important;
+  transition: all 0.3s;
+}
+
+.submit-button:hover {
+  transform: scale(1.1)
+}
+
+.submit-button i {
+  padding-left: 40px !important;
 }
