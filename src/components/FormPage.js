@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import uuidv5 from "uuid/v5";
 import { useDispatch } from "react-redux";
 import { Form, Icon, Input, Button, Alert, DatePicker } from "antd";
 import moment from "moment";
-import { addUser } from "../actions/index";
+import { ADD_USER } from "../actions/types";
 
 const FormPage = props => {
   const [type, setType] = useState("error");
@@ -20,7 +21,9 @@ const FormPage = props => {
   const handleSubmit = e => {
     e.preventDefault();
     const user = { ...formData };
-    user.key = Date.now();
+    const APP_NAMESPACE = "1b671a64-40d5-491e-99b0-da01ff1f3341";
+    user.userid = uuidv5(Date.now().toString(), APP_NAMESPACE);
+    user.key = user.userid;
 
     let err = false;
     Object.keys(user).forEach((key, i) => {
@@ -29,10 +32,7 @@ const FormPage = props => {
       }
     });
     if (!err) {
-      setType("success");
-      setShowMsg(true);
-      clearAlert();
-      dispatch(addUser(user));
+      dispatch({ type: ADD_USER, payload: user });
 
       setFormData({
         firstname: "",
@@ -42,7 +42,7 @@ const FormPage = props => {
         hobby: ""
       });
     } else {
-      setType("error");
+      // setType("error");
       setShowMsg(true);
       clearAlert();
     }
@@ -68,14 +68,24 @@ const FormPage = props => {
 
   return (
     <div className="form-section">
+      {props.isSaving ? (
+        <Alert
+          message="saving user..."
+          type="info"
+          style={{ marginBottom: "15px" }}
+        />
+      ) : null}
+      {props.userSaved ? (
+        <Alert
+          message="User saved successfully"
+          type="success"
+          style={{ marginBottom: "15px" }}
+        />
+      ) : null}
       {showMsg ? (
         <Alert
-          message={
-            type === "success"
-              ? "User added successfully"
-              : "Please fill in all fields..."
-          }
-          type={type}
+          message="Please fill in all fields"
+          type="error"
           style={{ marginBottom: "15px" }}
         />
       ) : null}
@@ -143,6 +153,7 @@ const FormPage = props => {
           className="submit-button"
           htmlType="submit"
           onClick={handleSubmit}
+          disabled={props.isSaving}
         >
           save
           <Icon type="right" />

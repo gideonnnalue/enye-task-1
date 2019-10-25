@@ -1,23 +1,24 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Layout } from "antd";
 import { Row, Col } from "antd";
 
 import FormPage from "./FormPage";
 import TablePage from "./TablePage";
 
+import { LOAD_USERS } from "../actions/types";
+
 const { Content } = Layout;
 
-const MainPage = () => {
-  // const [users, setUsers] = useState([]);
+const MainPage = props => {
+  const state = useSelector(state => state);
 
-  const users = useSelector(state => state.users);
+  const dispatch = useDispatch();
 
-  // const addUser = data => {
-  //   const newUsers = [...users];
-  //   newUsers.push(data);
-  //   setUsers(newUsers);
-  // };
+  useEffect(() => {
+    dispatch({ type: LOAD_USERS });
+  }, []);
+
   return (
     <div className="main">
       <Layout className="layout">
@@ -25,10 +26,21 @@ const MainPage = () => {
         <Content className="content">
           <Row style={{ width: "100%", height: "100%" }}>
             <Col md={24} lg={10} xl={10} className="section table__form">
-              <FormPage />
+              <FormPage isSaving={state.isSaving} userSaved={state.userSaved} />
             </Col>
             <Col md={24} lg={14} xl={14} className="section table__content">
-              <TablePage users={users} />
+              {state.loadingUsers ? (
+                <p
+                  style={{
+                    textAlign: "center",
+                    padding: "10px",
+                    color: "blue"
+                  }}
+                >
+                  Loading Users...
+                </p>
+              ) : null}
+              <TablePage users={state.users} />
             </Col>
           </Row>
         </Content>
