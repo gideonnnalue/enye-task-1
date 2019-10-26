@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import uuidv5 from "uuid/v5";
 import { useDispatch } from "react-redux";
 import { Form, Icon, Input, Button, Alert, DatePicker } from "antd";
 import moment from "moment";
@@ -21,9 +20,7 @@ const FormPage = props => {
   const handleSubmit = e => {
     e.preventDefault();
     const user = { ...formData };
-    const APP_NAMESPACE = "1b671a64-40d5-491e-99b0-da01ff1f3341";
-    user.userid = uuidv5(Date.now().toString(), APP_NAMESPACE);
-    user.key = user.userid;
+    user.key = Date.now().toString();
 
     let err = false;
     Object.keys(user).forEach((key, i) => {
