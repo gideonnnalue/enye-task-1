@@ -11,13 +11,18 @@ import {
 import { firebaseUsers } from "../firebaseConfig";
 import { takeEvery, put, fork, take } from "redux-saga/effects";
 import { eventChannel } from "redux-saga";
+import axios from "axios";
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
 function* addUserAsync(user) {
   try {
     yield put({ type: SAVING_USER });
-    yield firebaseUsers.push(user.payload);
+    // yield firebaseUsers.push(user.payload);
+    yield axios.post(
+      "https://us-central1-enye-user-form.cloudfunctions.net/users",
+      user.payload
+    );
     yield put({ type: SAVED_USER });
     yield delay(2000);
     yield put({ type: CLEAR_SAVING_USER });
